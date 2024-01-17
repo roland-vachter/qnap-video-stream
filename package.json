@@ -8,7 +8,7 @@
     "prebuild": "npm run lint",
     "prestart": "npm run build",
     "start": "node .",
-    "build": "tsc -p . && scss",
+    "build": "tsc -p . && npm run scss",
     "start-dev": "nodemon src/app.ts",
     "scss": "sass src/scss/main.scss public/styles/main.css",
     "scss-dev": "sass --watch src/scss/main.scss public/styles/main.css"
