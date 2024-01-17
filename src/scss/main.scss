@@ -15,7 +15,7 @@ body {
     list-style: none;
     color: $black;
 
-    
+
     li {
         padding: 4px 10px;
         background: $light-gray;
@@ -28,15 +28,21 @@ body {
         &:before {
             content: '';
             display: inline-block;
+            min-width: 24px;
             width: 24px;
             height: 24px;
-            background-size: contain;
+            background-size: cover;
             background-position: center;
             margin-right: 10px;
         }
 
         button {
             align-self: flex-end;
+        }
+
+        a {
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
     }
 }

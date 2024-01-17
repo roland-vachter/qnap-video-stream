@@ -11881,14 +11881,19 @@ body {
 .list li:before {
   content: "";
   display: inline-block;
+  min-width: 24px;
   width: 24px;
   height: 24px;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   margin-right: 10px;
 }
 .list li button {
   align-self: flex-end;
+}
+.list li a {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .folder-list li:before {
