@@ -3,12 +3,12 @@
 <ul class="list folder-list">
     {{#unless root}}
         <li>
-            <a href="{{path}}/..">..</a>
+            <a href="{{path}}..">..</a>
         </li>
     {{/unless}}
     {{#each folders}}
     <li>
-        <a href="{{../path}}/{{this}}">{{this}}</a>
+        <a href="{{../path}}{{this}}">{{this}}</a>
     </li>
     {{/each}}
 </ul>
