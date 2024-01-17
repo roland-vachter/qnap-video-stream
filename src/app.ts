@@ -6,9 +6,12 @@ initLoadEnv();
 const server = initExpress();
 
 process.on("SIGTERM", () => {
-  console.log("SIGTERM signal received."); // tslint:disable-line
-  console.log("Closing Express Server"); // tslint:disable-line
+  // eslint-disable-next-line no-console
+  console.log("SIGTERM signal received.");
+  // eslint-disable-next-line no-console
+  console.log("Closing Express Server");
   server.close(() => {
-    console.log("Express server closed."); // tslint:disable-line
+    // eslint-disable-next-line no-console
+    console.log("Express server closed.");
   });
 });
