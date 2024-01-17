@@ -1,7 +1,4 @@
-import initLoadEnv from "./config/env";
 import initExpress from "./config/express";
-
-initLoadEnv();
 
 const server = initExpress();
 
