@@ -72,7 +72,7 @@ function initExpress(): Server {
 
     return res.render('home', {
       root: req.url === '/',
-      path: decodeURIComponent(req.url) + (req.url === '/' ? '' : '/'),
+      path: decodeURIComponent(req.url) + (req.url.endsWith('/') ? '' : '/'),
       sid: cookies.sid,
       nasUrl: process.env.NAS_URL,
       basePath: process.env.BASE_PATH,
