@@ -1,0 +1,39 @@
+{
+  "name": "express-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "prestart": "npm run build",
+    "start": "node .",
+    "build": "tsc -p . && scss",
+    "start-dev": "nodemon src/app.ts",
+    "scss": "sass src/scss/main.scss public/styles/main.css",
+    "scss-dev": "sass --watch src/scss/main.scss public/styles/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "express-handlebars": "^3.1.0",
+    "fast-xml-parser": "^4.3.3",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.6",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.16.1",
+    "@types/express-handlebars": "0.0.31",
+    "@types/node": "^12.0.2",
+    "nodemon": "^1.19.0",
+    "sass": "^1.69.7",
+    "ts-node": "^10.9.2",
+    "tslint": "^5.16.0",
+    "typescript": "^5.3.3"
+  }
+}

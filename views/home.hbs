@@ -1,0 +1,24 @@
+<h3>{{path}}</h3>
+
+<ul class="list folder-list">
+    {{#unless root}}
+        <li>
+            <a href="{{path}}/..">..</a>
+        </li>    
+    {{/unless}}
+    {{#each folders}}
+    <li>
+        <a href="{{../path}}{{this}}">{{this}}</a>
+    </li>
+    {{/each}}
+</ul>
+
+<ul class="list file-list">
+    {{#each files}}
+    <li>
+        {{this}}
+        <div class="spacer"></div>
+        <button class="btn btn-secondary" onclick="copyStreamUrl(this, '{{../nasUrl}}/cgi-bin/filemanager/utilRequest.cgi?func=get_viewer&sid={{../sid}}&source_path=/{{../basePath}}{{../path}}&source_file={{this}}')">Copy Stream URL</button>
+    </li>
+    {{/each}}
+</ul>

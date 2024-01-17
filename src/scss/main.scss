@@ -1,0 +1,54 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import './variables';
+
+body {
+    background-color: $silver;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $black;
+
+    
+    li {
+        padding: 4px 10px;
+        background: $light-gray;
+        margin-bottom: 4px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &:before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-size: contain;
+            background-position: center;
+            margin-right: 10px;
+        }
+
+        button {
+            align-self: flex-end;
+        }
+    }
+}
+
+.folder-list li:before {
+    background-image: url('/public/icons/folder.svg');
+}
+
+.file-list li:before {
+    background-image: url('/public/icons/video-file.svg');
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
