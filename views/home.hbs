@@ -4,11 +4,11 @@
     {{#unless root}}
         <li>
             <a href="{{path}}/..">..</a>
-        </li>    
+        </li>
     {{/unless}}
     {{#each folders}}
     <li>
-        <a href="{{../path}}{{this}}">{{this}}</a>
+        <a href="{{../path}}/{{this}}">{{this}}</a>
     </li>
     {{/each}}
 </ul>
