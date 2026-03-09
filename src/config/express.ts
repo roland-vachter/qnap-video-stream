@@ -25,7 +25,7 @@ function initExpress(): Server {
     defaultLayout: 'main',
     extname: '.handlebars'
   }));
-  app.set('views', path.join(__dirname, (__dirname.includes('dist') ? '../' : '') + '../views'));
+  app.set('views', path.join(__dirname, (__dirname.includes('dist') ? '../src/' : '../') + 'views'));
   app.set('view engine', 'handlebars');
 
   // Middleware
