@@ -17,9 +17,10 @@ import { Cookies, FileApiResponse, FolderResponse, LoginBody, LoginResponse } fr
 function initExpress(): Server {
   const app: Application = express();
 
-  app.use('/public', express.static(path.join(__dirname, '../../public')))
+  app.use('/public', express.static(path.join(__dirname, '../../public')));
 
   // Set Template engine to handlebars
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/no-unsafe-call
   app.engine('handlebars', engine({
     defaultLayout: 'main',
     extname: '.handlebars'
