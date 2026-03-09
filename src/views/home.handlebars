@@ -18,7 +18,7 @@
     <li>
         {{this}}
         <div class="spacer"></div>
-        <button class="btn btn-secondary" onclick="copyStreamUrl(this, '{{../nasUrl}}/cgi-bin/filemanager/utilRequest.cgi?func=get_viewer&sid={{../sid}}&source_path=/{{../basePath}}{{../path}}&source_file={{this}}')">Copy Stream URL</button>
+        <button class="btn btn-secondary" onclick="copyStreamUrl(this, '{{../nasUrl}}/cgi-bin/filemanager/utilRequest.cgi?func=get_viewer&sid={{../sid}}&source_path={{../path}}&source_file={{this}}')">Copy Stream URL</button>
     </li>
     {{/each}}
 </ul>

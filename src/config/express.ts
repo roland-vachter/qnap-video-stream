@@ -5,7 +5,7 @@ import express, {
   Response,
   urlencoded
 } from 'express';
-import exphbs from 'express-handlebars';
+import { engine } from 'express-handlebars';
 import { Server } from 'http';
 import cookieParser from 'cookie-parser';
 import checkSid from '../middlewares/check-sid';
@@ -20,8 +20,12 @@ function initExpress(): Server {
   app.use('/public', express.static(path.join(__dirname, '../../public')))
 
   // Set Template engine to handlebars
-  app.engine('hbs', exphbs());
-  app.set('view engine', 'hbs');
+  app.engine('handlebars', engine({
+    defaultLayout: 'main',
+    extname: '.handlebars'
+  }));
+  app.set('views', path.join(__dirname, '..', 'views'));
+  app.set('view engine', 'handlebars');
 
   // Middleware
   app.use(json());
@@ -60,25 +64,35 @@ function initExpress(): Server {
   app.use(async (req: Request, res: Response) => {
     const cookies = req.cookies as Cookies;
 
-    const foldersRes = await listFolders(req.url, cookies.sid);
-    let folders: FolderResponse[] = await foldersRes.json() as FolderResponse[];
+    if (req.url === '/') {
+      return res.render('home', {
+        root: true,
+        path: '/',
+        sid: cookies.sid,
+        nasUrl: process.env.NAS_URL,
+        folders: process.env.BASE_PATHS?.split(','),
+        files: []
+      });
+    } else {
+      const foldersRes = await listFolders(req.url, cookies.sid);
+      let folders: FolderResponse[] = await foldersRes.json() as FolderResponse[];
 
-    if (!Array.isArray(folders)) {
-      folders = [];
+      if (!Array.isArray(folders)) {
+        folders = [];
+      }
+
+      const filesRes = await listFiles(req.url, cookies.sid);
+      const files: FileApiResponse = await filesRes.json() as FileApiResponse;
+
+      return res.render('home', {
+        root: false,
+        path: decodeURIComponent(req.url) + (req.url.endsWith('/') ? '' : '/'),
+        sid: cookies.sid,
+        nasUrl: process.env.NAS_URL,
+        folders: folders?.map(f => f.text).filter((n: string) => !n.startsWith('@')),
+        files: files?.datas?.map(f => f.filename)
+      });
     }
-
-    const filesRes = await listFiles(req.url, cookies.sid);
-    const files: FileApiResponse = await filesRes.json() as FileApiResponse;
-
-    return res.render('home', {
-      root: req.url === '/',
-      path: decodeURIComponent(req.url) + (req.url.endsWith('/') ? '' : '/'),
-      sid: cookies.sid,
-      nasUrl: process.env.NAS_URL,
-      basePath: process.env.BASE_PATH,
-      folders: folders?.map(f => f.text).filter((n: string) => !n.startsWith('@')),
-      files: files?.datas?.map(f => f.filename)
-    });
   });
 
   // Init Express

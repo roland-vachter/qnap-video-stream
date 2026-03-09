@@ -9,9 +9,9 @@ export function validateSid(sid: string) {
 }
 
 export function listFolders(path: string, sid: string) {
-    return fetch(`${process.env.NAS_URL}/cgi-bin/filemanager/utilRequest.cgi?func=get_tree&sid=${sid}&node=/${process.env.BASE_PATH}/${path}`);
+    return fetch(`${process.env.NAS_URL}/cgi-bin/filemanager/utilRequest.cgi?func=get_tree&sid=${sid}&node=${path}`);
 }
 
 export function listFiles(path: string, sid: string) {
-    return fetch(`${process.env.NAS_URL}/cgi-bin/filemanager/utilRequest.cgi?func=get_list&sid=${sid}&list_mode=all&path=/${process.env.BASE_PATH}/${path}&sort=filename&start=0&limit=500&type=2`);
+    return fetch(`${process.env.NAS_URL}/cgi-bin/filemanager/utilRequest.cgi?func=get_list&sid=${sid}&list_mode=all&path=${path}&sort=filename&start=0&limit=500&type=2`);
 }
